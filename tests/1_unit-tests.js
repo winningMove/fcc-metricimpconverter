@@ -1,7 +1,7 @@
 const { assert } = require("chai");
 const ConvertHandler = require("../controllers/convertHandler.js");
 
-let convertHandler = new ConvertHandler();
+const convertHandler = new ConvertHandler();
 
 suite("Unit Tests", function () {
   suite("ConvertHandler getNum()", function () {

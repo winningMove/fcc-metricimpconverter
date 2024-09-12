@@ -67,31 +67,36 @@ function ConvertHandler() {
     return spelledOutMap[unit];
   };
 
+  this.galToL = 3.78541;
+  this.lbsToKg = 0.453592;
+  this.miToKm = 1.60934;
+
   this.convert = function (initNum, initUnit) {
-    const galToL = 3.78541;
-    const lbsToKg = 0.453592;
-    const miToKm = 1.60934;
     switch (initUnit) {
       case "gal":
-        return initNum * galToL;
+        return initNum * this.galToL;
       case "L":
-        return initNum / galToL;
+        return initNum / this.galToL;
       case "lbs":
-        return initNum * lbsToKg;
+        return initNum * this.lbsToKg;
       case "kg":
-        return initNum / lbsToKg;
+        return initNum / this.lbsToKg;
       case "mi":
-        return initNum * miToKm;
+        return initNum * this.miToKm;
       case "km":
-        return initNum / miToKm;
+        return initNum / this.miToKm;
       default:
         return null;
     }
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
-    let result;
-
+    const [spelledOutInit, spelledOutReturn] = [initUnit, returnUnit].map(
+      this.spellOutUnit
+    );
+    const result = `${initNum} ${spelledOutInit} converts to ${returnNum.toFixed(
+      5
+    )} ${spelledOutReturn}`;
     return result;
   };
 }
