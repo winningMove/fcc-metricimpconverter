@@ -72,31 +72,38 @@ function ConvertHandler() {
   this.miToKm = 1.60934;
 
   this.convert = function (initNum, initUnit) {
+    let result;
     switch (initUnit) {
       case "gal":
-        return initNum * this.galToL;
+        result = initNum * this.galToL;
+        break;
       case "L":
-        return initNum / this.galToL;
+        result = initNum / this.galToL;
+        break;
       case "lbs":
-        return initNum * this.lbsToKg;
+        result = initNum * this.lbsToKg;
+        break;
       case "kg":
-        return initNum / this.lbsToKg;
+        result = initNum / this.lbsToKg;
+        break;
       case "mi":
-        return initNum * this.miToKm;
+        result = initNum * this.miToKm;
+        break;
       case "km":
-        return initNum / this.miToKm;
+        result = initNum / this.miToKm;
+        break;
       default:
         return null;
     }
+    result = +result.toFixed(5);
+    return result;
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
     const [spelledOutInit, spelledOutReturn] = [initUnit, returnUnit].map(
       this.spellOutUnit
     );
-    const result = `${initNum} ${spelledOutInit} converts to ${returnNum.toFixed(
-      5
-    )} ${spelledOutReturn}`;
+    const result = `${initNum} ${spelledOutInit} converts to ${returnNum} ${spelledOutReturn}`;
     return result;
   };
 }
