@@ -28,23 +28,43 @@ function ConvertHandler() {
 
     return !isNaN(result) ? result : null;
   };
-
+  // null if invalid unit
   this.getUnit = function (input) {
-    let result;
+    const unit = splitInput(input)?.unit;
+    const unitRegex = /^(?:kg|km|lbs|mi|l|gal)$/i;
 
-    return result;
+    if (!unitRegex.test(unit)) return null;
+    if (/l/i.test(unit)) {
+      return "L";
+    } else {
+      return unit.toLowerCase();
+    }
   };
 
   this.getReturnUnit = function (initUnit) {
-    let result;
+    const unitMap = {
+      kg: "lbs",
+      lbs: "kg",
+      km: "mi",
+      mi: "km",
+      L: "gal",
+      gal: "L",
+    };
 
-    return result;
+    return unitMap[initUnit];
   };
 
   this.spellOutUnit = function (unit) {
-    let result;
+    const spelledOutMap = {
+      kg: "kilograms",
+      lbs: "pounds",
+      km: "kilometers",
+      mi: "miles",
+      L: "liters",
+      gal: "gallons",
+    };
 
-    return result;
+    return spelledOutMap[unit];
   };
 
   this.convert = function (initNum, initUnit) {

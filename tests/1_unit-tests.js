@@ -4,7 +4,7 @@ const ConvertHandler = require("../controllers/convertHandler.js");
 let convertHandler = new ConvertHandler();
 
 suite("Unit Tests", function () {
-  suite("ConvertHandler", function () {
+  suite("ConvertHandler getNum()", function () {
     test("should correctly read a whole number input", () => {
       const number = convertHandler.getNum("24km");
       assert.isNumber(number);
@@ -30,6 +30,43 @@ suite("Unit Tests", function () {
     test("should correctly default to 1 on empty number value", () => {
       const shouldBeOne = convertHandler.getNum("L");
       assert.strictEqual(shouldBeOne, 1);
+    });
+  });
+  suite("ConvertHandler getUnit()", function () {
+    test("should correctly read each valid input unit", () => {
+      const validInputs = ["gaL", "l", "Kg", "mI", "KM", "lbs"];
+      const readInputs = validInputs.map(convertHandler.getUnit);
+      const correctOutput = ["gal", "L", "kg", "mi", "km", "lbs"];
+      assert.deepStrictEqual(readInputs, correctOutput);
+    });
+    test("should correctly reject invalid input unit", () => {
+      const validInputs = ["beep", "doL", "siKG", "duLL", "123zz", "!!-"];
+      const readInputs = validInputs.map(convertHandler.getUnit);
+      const correctOutput = Array(6).fill(null);
+      assert.deepStrictEqual(readInputs, correctOutput);
+    });
+  });
+  suite("ConvertHandler getReturnUnit()", function () {
+    test("should return the correct return unit for each valid input unit", () => {
+      const validInputs = ["gal", "L", "kg", "mi", "km", "lbs"];
+      const readInputs = validInputs.map(convertHandler.getReturnUnit);
+      const correctOutput = ["L", "gal", "lbs", "km", "mi", "kg"];
+      assert.deepStrictEqual(readInputs, correctOutput);
+    });
+  });
+  suite("ConvertHandler spellOutUnit()", function () {
+    test("should correctly return the spelled-out string unit for each valid input unit", () => {
+      const validInputs = ["gal", "L", "kg", "mi", "km", "lbs"];
+      const readInputs = validInputs.map(convertHandler.spellOutUnit);
+      const correctOutput = [
+        "gallons",
+        "liters",
+        "kilograms",
+        "miles",
+        "kilometers",
+        "pounds",
+      ];
+      assert.deepStrictEqual(readInputs, correctOutput);
     });
   });
 });
