@@ -69,4 +69,30 @@ suite("Unit Tests", function () {
       assert.deepStrictEqual(readInputs, correctOutput);
     });
   });
+  suite("ConvertHandler convert()", function () {
+    test("should correctly convert gal to L", () => {
+      const converted = convertHandler.convert(56, "gal");
+      assert.strictEqual(converted, 56 * convertHandler.galToL);
+    });
+    test("should correctly convert L to gal", () => {
+      const converted = convertHandler.convert(56, "L");
+      assert.strictEqual(converted, 56 / convertHandler.galToL);
+    });
+    test("should correctly convert mi to km", () => {
+      const converted = convertHandler.convert(56, "mi");
+      assert.strictEqual(converted, 56 * convertHandler.miToKm);
+    });
+    test("should correctly convert km to mi", () => {
+      const converted = convertHandler.convert(56, "km");
+      assert.strictEqual(converted, 56 / convertHandler.miToKm);
+    });
+    test("should correctly convert lbs to kg", () => {
+      const converted = convertHandler.convert(56, "lbs");
+      assert.strictEqual(converted, 56 * convertHandler.lbsToKg);
+    });
+    test("should correctly convert kg to lbs", () => {
+      const converted = convertHandler.convert(56, "kg");
+      assert.strictEqual(converted, 56 / convertHandler.lbsToKg);
+    });
+  });
 });
