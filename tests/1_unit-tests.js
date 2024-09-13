@@ -72,27 +72,27 @@ suite("Unit Tests", function () {
   suite("ConvertHandler convert()", function () {
     test("should correctly convert gal to L", () => {
       const converted = convertHandler.convert(56, "gal");
-      assert.strictEqual(converted, 56 * convertHandler.galToL);
+      assert.strictEqual(converted, +(56 * convertHandler.galToL).toFixed(5));
     });
     test("should correctly convert L to gal", () => {
       const converted = convertHandler.convert(56, "L");
-      assert.strictEqual(converted, 56 / convertHandler.galToL);
+      assert.strictEqual(converted, +(56 / convertHandler.galToL).toFixed(5));
     });
     test("should correctly convert mi to km", () => {
       const converted = convertHandler.convert(56, "mi");
-      assert.strictEqual(converted, 56 * convertHandler.miToKm);
+      assert.strictEqual(converted, +(56 * convertHandler.miToKm).toFixed(5));
     });
     test("should correctly convert km to mi", () => {
       const converted = convertHandler.convert(56, "km");
-      assert.strictEqual(converted, 56 / convertHandler.miToKm);
+      assert.strictEqual(converted, +(56 / convertHandler.miToKm).toFixed(5));
     });
     test("should correctly convert lbs to kg", () => {
       const converted = convertHandler.convert(56, "lbs");
-      assert.strictEqual(converted, 56 * convertHandler.lbsToKg);
+      assert.strictEqual(converted, +(56 * convertHandler.lbsToKg).toFixed(5));
     });
     test("should correctly convert kg to lbs", () => {
       const converted = convertHandler.convert(56, "kg");
-      assert.strictEqual(converted, 56 / convertHandler.lbsToKg);
+      assert.strictEqual(converted, +(56 / convertHandler.lbsToKg).toFixed(5));
     });
   });
 });
