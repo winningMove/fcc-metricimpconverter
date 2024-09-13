@@ -23,6 +23,11 @@ suite("Unit Tests", function () {
       assert.isNumber(decimal);
       assert.strictEqual(decimal, 0.5);
     });
+    test("should correctly read a fractional input with a decimal", () => {
+      const frWithDec = convertHandler.getNum("2.2/1.1km");
+      assert.isNumber(frWithDec);
+      assert.strictEqual(frWithDec, 2);
+    });
     test("should correctly reject a double-fraction", () => {
       const invalid = convertHandler.getNum("1/2/3kg");
       assert.isNull(invalid);
