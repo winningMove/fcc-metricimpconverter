@@ -34,7 +34,7 @@ function ConvertHandler() {
     const unitRegex = /^(?:kg|km|lbs|mi|l|gal)$/i;
 
     if (!unitRegex.test(unit)) return null;
-    if (/l/i.test(unit)) {
+    if (/^l$/i.test(unit)) {
       return "L";
     } else {
       return unit.toLowerCase();

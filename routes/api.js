@@ -20,7 +20,7 @@ module.exports = function (app) {
       }`;
       return res.json({ string: invalidMessage });
     }
-    const returnNum = convertHandler.convert(initNum);
+    const returnNum = convertHandler.convert(initNum, initUnit);
     const returnUnit = convertHandler.getReturnUnit(initUnit);
     const message = convertHandler.getString(
       initNum,

@@ -14,9 +14,11 @@ suite("Functional Tests", function () {
     done();
   });
   suiteTeardown(function closeServer(done) {
-    requester.close();
     convertHandler = null;
-    done();
+    requester.close(() => {
+      console.log("Server closed.");
+      done();
+    });
   });
 
   test("get request should convert a valid input such as 10L", (done) => {
